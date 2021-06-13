@@ -1,0 +1,28 @@
+// The syntax statement tells the protobuf compiler what syntax we are going to use. 
+// It’s important to specify which protobuf version we are using.
+syntax = "proto3";
+
+// The second statement is optional and it tells the protobuf compiler to generate 
+// C# classes within the specified namespace: GrpcHelloWorldServer.
+option csharp_namespace = "GrpcHelloWorldClient";
+
+package helloworld;
+
+// The HelloService service defines a SayHello call. 
+// SayHello sends a HelloRequest message and receives a HelloResponse message.
+// So we are defining the HelloRequest and HelloResponse message types like data transfer objects (DTOs).
+// This messages and services will be generated for accessing from our application.
+service HelloService {
+	rpc SayHello (HelloRequest) returns (HelloResponse);
+}
+
+message HelloRequest {
+	string name = 1;
+}
+
+message HelloResponse {
+	string message = 1;
+}
+
+// After that, we should Add this proto file in our project file item groups in order to attach and generate proto file c# codes.
+// - GrpcHelloWorldServer.csproj project file;

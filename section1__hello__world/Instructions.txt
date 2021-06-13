@@ -1,0 +1,25 @@
+First, we are going to open hello.proto file. 
+Because, gRPC uses a contract-first approach to API development. 
+Services and messages are defined in *.proto files.
+
+The syntax statement tells the protobuf compiler what syntax we are going to use. 
+It’s important to specify which protobuf version we are using.
+The second statement is optional and it tells the protobuf compiler to generate C# classes within the specified namespace: GrpcHelloWorldServer.
+After that, we have Defined a HelloService. 
+The HelloService service defines a SayHello call. 
+SayHello sends a HelloRequest message and receives a HelloResponse message.
+So we are defining the HelloRequest and HelloResponse message types like data transfer objects (DTOs). 
+This messages and services will be generated for accessing from our application.
+After that, we should Add this proto file in our project file item groups in order to attach and generate proto file c# codes.
+— So Go to GrpcHelloWorldServer.csproj project file;
+
+Now we can build the project. When we build the project, it compiles the proto file and it will generate c# proto class.
+
+Right-click the project and Build the project
+it compiles the proto file
+Also we can check Properties of Proto file with F4
+Build Action = Protobuf compiler
+gRPC stub Classes = Server only
+
+Also we set the “gRPC stub Classes = Server only”, that means when generate the c# class, it will arrange the codes as a Server of gRPC Api project. 
+So by this way we can implement server logics with generated scaffolding c# proto class.
